@@ -5,6 +5,7 @@ import torchvision.models as models
 from PIL import Image
 import streamlit as st
 import io
+st.title('Uber pickups in NYC')
 
 streamlit run your_script_name.py
 
