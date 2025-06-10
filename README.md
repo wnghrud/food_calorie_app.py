@@ -25,7 +25,7 @@ calorie_table = {
 
 model = models.resnet18(pretrained=True)
 model.fc = torch.nn.Linear(model.fc.in_features, len(idx_to_class))
-# model.load_state_dict(torch.load("food_classifier.pt", map_location=torch.device('cpu')))
+model.load_state_dict(torch.load("food_classifier.pt", map_location=torch.device('cpu')))
 model.eval()
 
 transform = transforms.Compose([
