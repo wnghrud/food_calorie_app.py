@@ -5,8 +5,6 @@ import torchvision.models as models
 from PIL import Image
 import streamlit as st
 import io
-st.title('Uber pickups in NYC')
-
 streamlit run your_script_name.py
 
 idx_to_class = {
@@ -27,7 +25,7 @@ calorie_table = {
 
 model = models.resnet18(pretrained=True)
 model.fc = torch.nn.Linear(model.fc.in_features, len(idx_to_class))
-model.load_state_dict(torch.load("food_classifier.pt", map_location=torch.device('cpu')))
+# model.load_state_dict(torch.load("food_classifier.pt", map_location=torch.device('cpu')))
 model.eval()
 
 transform = transforms.Compose([
@@ -58,3 +56,4 @@ if uploaded_file is not None:
 
     st.success(f"예상 음식: {food_name}")
     st.info(f"예상 칼로리: {calorie} kcal")
+
