@@ -6,6 +6,8 @@ from PIL import Image
 import streamlit as st
 import io
 
+streamlit run your_script_name.py
+
 idx_to_class = {
     0: "pizza",
     1: "bibimbap",
