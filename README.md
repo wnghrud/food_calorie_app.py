@@ -7,6 +7,10 @@ import streamlit as st
 import io
 streamlit run your_script_name.py
 
+streamlit==1.24.1
+pandas>2.0
+numpy<=1.25.1
+
 idx_to_class = {
     0: "pizza",
     1: "bibimbap",
