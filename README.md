@@ -1,9 +1,11 @@
+pip install streamlit
 import torch
 import torchvision.transforms as transforms
 import torchvision.models as models
 from PIL import Image
 import streamlit as st
 import io
+
 idx_to_class = {
     0: "pizza",
     1: "bibimbap",
@@ -11,6 +13,7 @@ idx_to_class = {
     3: "burger",
     4: "ramen"
 }
+
 calorie_table = {
     "pizza": 266,
     "bibimbap": 500,
@@ -18,10 +21,12 @@ calorie_table = {
     "burger": 295,
     "ramen": 436
 }
+
 model = models.resnet18(pretrained=True)
 model.fc = torch.nn.Linear(model.fc.in_features, len(idx_to_class))
-# model.load_state_dict(torch.load("food_classifier.pt", map_location=torch.device('cpu')))
+model.load_state_dict(torch.load("food_classifier.pt", map_location=torch.device('cpu')))
 model.eval()
+
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
@@ -36,7 +41,6 @@ def predict_calorie(image: Image.Image):
     calorie = calorie_table.get(food_name, "알 수 없음")
     return food_name, calorie
 
-# Streamlit UI
 st.title("🍱 음식 사진 칼로리 추정기")
 st.write("이미지를 업로드하면 음식 종류와 예상 칼로리를 보여줍니다.")
 
